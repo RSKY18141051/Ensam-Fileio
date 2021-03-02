@@ -1,0 +1,79 @@
+; Equipo 2 Kevin Ruiz, Luis Malagon
+; Empresa -----> Bancos
+
+org 100h
+
+;macros
+imprimir macro texto
+mov ah, 9
+mov dx, offset texto
+int 21h
+endm
+;fin de macro
+
+
+;empresa.txt
+abrir:
+mov ah, 3dh  ;modo lectura
+mov al, 0    ;indica que abre desde modo lectura
+mov dx, offset archivo
+int 21h
+jc error1
+mov handler, ax
+
+leer:
+mov ah, 3fh
+mov bx, handler
+mov dx, offset fragmento
+mov cx, 193
+int 21h
+jc error2
+imprimir fragmento
+nop
+jmp abrir2
+
+
+;bancos.txt
+abrir2:
+mov ah, 3dh  ;modo lectura
+mov al, 0    ;indica que abre desde modo lectura
+mov dx, offset archivo2
+int 21h
+jc error1
+mov handler, ax
+
+leer2:
+mov ah, 3fh
+mov bx, handler
+mov dx, offset fragmento2
+mov cx, 193
+int 21h
+jc error2
+imprimir fragmento2
+jmp fin
+
+;los errores que pueden surgir
+error1:
+imprimir msgError1
+
+error2:
+imprimir msgError2
+
+
+;cierra archivo
+fin:
+mov ah, 3eh
+mov bx, handler
+int 21h
+ret
+
+;variables
+archivo db 'C:\Interfaz\empresa.txt',0  ;Ruta de empresa.txt
+archivo2 db 'C:\Interfaz\bancos.txt',0  ;Ruta de bancos.txt
+handler dw ?                  ;nos ayuda con los archivos
+fragmento db 194 dup('$')     ;aqui esta el txt de empresa
+fragmento2 db 251 dup('$')    ;aqui esta el txt de bancos
+limpiar db 194 dup('$')       ;limpiar la pantalla
+msgError1 db 10,13,'Error: no se pudo abrir el archivo$'   ;por si no se puede abrir el txt
+msgError2 db 10,13,'Error: no se pudo leer el archivo$'    ;por si no se puede leer el txt
+

@@ -1,0 +1,38 @@
+< THE SYMBOL TABLE >  fileio.com_  --  emu8086 assembler version: 4.08 
+===================================================================================================
+Name                     	Offset    	Size      	Type      	Segment   
+===================================================================================================
+DIR1                     	00103     	1         	VAR       	(NOSEG)   
+DIR2                     	0010C     	1         	VAR       	(NOSEG)   
+DIR3                     	00112     	1         	VAR       	(NOSEG)   
+FILE1                    	0011A     	1         	VAR       	(NOSEG)   
+FILE2                    	0012F     	1         	VAR       	(NOSEG)   
+FILE3                    	00143     	1         	VAR       	(NOSEG)   
+HANDLE                   	0014A     	2         	VAR       	(NOSEG)   
+TEXT                     	0014C     	1         	VAR       	(NOSEG)   
+TEXT2                    	0017B     	1         	VAR       	(NOSEG)   
+TEXT3                    	001AA     	1         	VAR       	(NOSEG)   
+TEXT4                    	001D8     	1         	VAR       	(NOSEG)   
+TEXT5                    	0020A     	1         	VAR       	(NOSEG)   
+TEXT6                    	0023C     	1         	VAR       	(NOSEG)   
+TEXT7                    	00270     	1         	VAR       	(NOSEG)   
+TEXT8                    	002A3     	1         	VAR       	(NOSEG)   
+TEXT9                    	002DB     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__N1_L1B	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N2_L1C	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N3_L1D	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N4_L1E	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N5_L1F	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N6_L20	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N7_L21	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N8_L22	00313     	-1        	LABEL     	(NOSEG)   
+_LOCATION_COUNTER__N9_L23	00313     	-1        	LABEL     	(NOSEG)   
+TEXT12                   	00313     	1         	VAR       	(NOSEG)   
+_LOCATION_COUNTER__NA_L26	00316     	-1        	LABEL     	(NOSEG)   
+START                    	00316     	-1        	LABEL     	(NOSEG)   
+ERR                      	0037D     	-1        	LABEL     	(NOSEG)   
+ERR2                     	0040D     	-1        	LABEL     	(NOSEG)   
+===================================================================================================
+[ 17/11/2020  --  06:07:14 p. m. ] 
+< END >
+ 

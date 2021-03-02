@@ -1,0 +1,235 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+fileio.com_ -- emu8086 assembler version: 4.08  
+ 
+[ 17/11/2020  --  06:07:14 p. m. ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       name "fileio"
+[   2]        :                                       
+[   3]        :                                       ;empresa -----> bancos (????????)
+[   4]        :                                       
+[   5]        :                                       org  100h
+[   6]        :                                       
+[   7]    0100: E9 13 02                              jmp start
+[   8]        :                                       
+[   9]    0103: 63 3A 5C 74 65 73 74 31 00            dir1 db "c:\test1", 0
+[  10]    010C: 74 65 73 74 32 00                     dir2 db "test2", 0
+[  11]    0112: 6E 65 77 6E 61 6D 65 00               dir3 db "newname", 0
+[  12]    011A: 63 3A 5C 74 65 73 74 31 5C 65 6D 70   file1 db "c:\test1\empresa.txt", 0
+                72 65 73 61 2E 74 78 74 00          
+[  13]    012F: 63 3A 5C 74 65 73 74 31 5C 62 61 6E   file2 db "c:\test1\bancos.txt", 0
+                63 6F 73 2E 74 78 74 00             
+[  14]    0143: 74 31 2E 74 78 74 00                  file3 db "t1.txt", 0
+[  15]    014A: 00 00                                 handle dw ?
+[  16]        :                                       
+[  17]    014C: 43 4C 49 45 4E 54 45 20 20 20 20 20   text   db "CLIENTE           CUENTA         TIPO     SALDO"
+                20 20 20 20 20 20 43 55 45 4E 54 41 
+                20 20 20 20 20 20 20 20 20 54 49 50 
+                4F 20 20 20 20 20 53 41 4C 44 4F    
+[  18]    017B: 4A 55 41 4E 20 50 45 52 45 5A 20 20   text2  db "JUAN PEREZ        2345121        A1       34502"
+                20 20 20 20 20 20 32 33 34 35 31 32 
+                31 20 20 20 20 20 20 20 20 41 31 20 
+                20 20 20 20 20 20 33 34 35 30 32    
+[  19]    01AA: 41 4E 54 4F 4E 49 4F 20 4C 4F 50 45   text3  db "ANTONIO LOPEZ     222124545      B2       3453"
+                5A 20 20 20 20 20 32 32 32 31 32 34 
+                35 34 35 20 20 20 20 20 20 42 32 20 
+                20 20 20 20 20 20 33 34 35 33       
+[  20]    01D8: 41 4C 42 45 52 54 4F 20 43 4F 52 54   text4  db "ALBERTO CORTEZ    1234561-323    EX3      56356642"
+                45 5A 20 20 20 20 31 32 33 34 35 36 
+                31 2D 33 32 33 20 20 20 20 45 58 33 
+                20 20 20 20 20 20 35 36 33 35 36 36 
+                34 32                               
+[  21]    020A: 41 4E 41 20 42 4F 42 41 4E 41 20 20   text5  db "ANA BOBANA        2343211        A1       23423424"
+                20 20 20 20 20 20 32 33 34 33 32 31 
+                31 20 20 20 20 20 20 20 20 41 31 20 
+                20 20 20 20 20 20 32 33 34 32 33 34 
+                32 34                               
+[  22]        :                                       
+[  23]    023C: 4A 55 41 4E 20 50 45 52 45 5A 20 20   text6  db "JUAN PEREZ        000002345121   XA1      $34,502.00"
+                20 20 20 20 20 20 30 30 30 30 30 32 
+                33 34 35 31 32 31 20 20 20 58 41 31 
+                20 20 20 20 20 20 24 33 34 2C 35 30 
+                32 2E 30 30                         
+[  24]    0270: 41 4E 54 4F 4E 49 4F 20 4C 4F 50 45   text7  db "ANTONIO LOPEZ     000222124545   XB2      $3,453.00"
+                5A 20 20 20 20 20 30 30 30 32 32 32 
+                31 32 34 35 34 35 20 20 20 58 42 32 
+                20 20 20 20 20 20 24 33 2C 34 35 33 
+                2E 30 30                            
+[  25]    02A3: 41 4C 42 45 52 54 4F 20 43 4F 52 54   text8  db "ALBERTO CORTEZ    01234561-323   EX3      $56,356,642.00"
+                45 5A 20 20 20 20 30 31 32 33 34 35 
+                36 31 2D 33 32 33 20 20 20 45 58 33 
+                20 20 20 20 20 20 24 35 36 2C 33 35 
+                36 2C 36 34 32 2E 30 30             
+[  26]    02DB: 41 4E 41 20 42 4F 42 41 4E 41 20 20   text9  db "ANA BOBANA        000002343211   XA1      $23,423,424.00"
+                20 20 20 20 20 20 30 30 30 30 30 32 
+                33 34 33 32 31 31 20 20 20 58 41 31 
+                20 20 20 20 20 20 24 32 33 2C 34 32 
+                33 2C 34 32 34 2E 30 30             
+[  27]        :                                       
+[  28]    0313:                                       text_size = $ - offset text
+[  29]    0313:                                       text2_size = $ - offset text2
+[  30]    0313:                                       text3_size = $ - offset text3
+[  31]    0313:                                       text4_size = $ - offset text4
+[  32]    0313:                                       text5_size = $ - offset text5
+[  33]    0313:                                       text6_size = $ - offset text6
+[  34]    0313:                                       text7_size = $ - offset text7
+[  35]    0313:                                       text8_size = $ - offset text8
+[  36]    0313:                                       text9_size = $ - offset text9
+[  37]        :                                       
+[  38]    0313: 68 69 21                              text12 db "hi!"
+[  39]    0316:                                       text12_size = $ - offset text12
+[  40]        :                                       
+[  41]    0316:                                       start:
+[  42]    0316: 8C C8                                 mov ax, cs
+[  43]    0318: 8B D0                                 mov dx, ax
+[  44]    031A: 8E C0                                 mov es, ax
+[  45]        :                                       
+[  46]        :                                       
+[  47]        :                                       ; create c:\emu8086\vdrive\C\test1
+[  48]    031C: BA 03 01                              mov dx, offset dir1
+[  49]    031F: B4 39                                 mov ah, 39h
+[  50]    0321: CD 21                                 int 21h
+[  51]        :                                       
+[  52]        :                                       ; create  c:\emu8086\MyBuild\test2
+[  53]    0323: BA 0C 01                              mov dx, offset dir2
+[  54]    0326: B4 39                                 mov ah, 39h
+[  55]    0328: CD 21                                 int 21h
+[  56]        :                                       
+[  57]        :                                       ; rename directory: c:\emu8086\MyBuild\test2 to c:\emu8086\MyBuild\newname
+[  58]    032A: B4 56                                 mov ah, 56h
+[  59]    032C: BA 0C 01                              mov dx, offset dir2   ; existing.
+[  60]    032F: BF 12 01                              mov di, offset dir3   ; new.
+[  61]    0332: CD 21                                 int 21h
+[  62]        :                                       
+[  63]        :                                       ; create and open file: c:\emu8086\vdrive\C\test1\empresa.txt
+[  64]    0334: B4 3C                                 mov ah, 3ch
+[  65]    0336: B9 00 00                              mov cx, 0
+[  66]    0339: BA 1A 01                              mov dx, offset file1
+[  67]    033C: CD 21                                 int 21h
+[  68]    033E: 72 3D                                 jc err
+[  69]    0340: A3 4A 01                              mov handle, ax
+[  70]        :                                       
+[  71]        :                                       ; write to file:
+[  72]    0343: B4 40                                 mov ah, 40h
+[  73]    0345: 8B 1E 4A 01                           mov bx, handle
+[  74]    0349: BA 4C 01                              mov dx, offset text
+[  75]    034C: B9 C7 01                              mov cx, text_size
+[  76]    034F: BA 7B 01                              mov dx, offset text2
+[  77]    0352: B9 98 01                              mov cx, text2_size
+[  78]    0355: BA AA 01                              mov dx, offset text3
+[  79]    0358: B9 69 01                              mov cx, text3_size
+[  80]    035B: BA D8 01                              mov dx, offset text4
+[  81]    035E: B9 3B 01                              mov cx, text4_size
+[  82]    0361: BA 0A 02                              mov dx, offset text5
+[  83]    0364: B9 09 01                              mov cx, text5_size
+[  84]    0367: BA 3C 02                              mov dx, offset text6
+[  85]    036A: B9 D7 00                              mov cx, text6_size
+[  86]    036D: BA 70 02                              mov dx, offset text7
+[  87]    0370: B9 A3 00                              mov cx, text7_size
+[  88]    0373: CD 21                                 int 21h
+[  89]        :                                       
+[  90]        :                                       ; close c:\emu8086\vdrive\C\test1\empresa.txt
+[  91]    0375: B4 3E                                 mov ah, 3eh
+[  92]    0377: 8B 1E 4A 01                           mov bx, handle
+[  93]    037B: CD 21                                 int 21h
+[  94]    037D:                                       err:
+[  95]    037D: 90                                    nop
+[  96]        :                                       
+[  97]        :                                       ; rename fileL c:\emu8086\vdrive\C\test1\empresa.txt to c:\test1\bancos.txt
+[  98]    037E: B4 56                                 mov ah, 56h
+[  99]    0380: BA 1A 01                              mov dx, offset file1   ; existing.
+[ 100]    0383: BF 2F 01                              mov di, offset file2   ; new.
+[ 101]    0386: CD 21                                 int 21h
+[ 102]        :                                       
+[ 103]        :                                       ; delete file c:\emu8086\vdrive\C\test1\bancos.txt
+[ 104]    0388: B4 41                                 mov ah, 41h
+[ 105]    038A: BA 2F 01                              mov dx, offset file2
+[ 106]    038D: CD 21                                 int 21h
+[ 107]        :                                       
+[ 108]        :                                       ; delete directory: c:\emu8086\vdrive\C\test1
+[ 109]    038F: B4 3A                                 mov ah, 3ah
+[ 110]    0391: BA 03 01                              mov dx, offset dir1
+[ 111]    0394: CD 21                                 int 21h
+[ 112]        :                                       
+[ 113]        :                                       ; create and open file: c:\emu8086\MyBuild\t1.txt
+[ 114]    0396: B4 3C                                 mov ah, 3ch
+[ 115]    0398: B9 00 00                              mov cx, 0
+[ 116]    039B: BA 43 01                              mov dx, offset file3
+[ 117]    039E: CD 21                                 int 21h
+[ 118]    03A0: 72 6B                                 jc err2
+[ 119]    03A2: A3 4A 01                              mov handle, ax
+[ 120]        :                                       
+[ 121]        :                                       ; seek:
+[ 122]    03A5: B4 42                                 mov ah, 42h
+[ 123]    03A7: 8B 1E 4A 01                           mov bx, handle
+[ 124]    03AB: B0 00                                 mov al, 0
+[ 125]    03AD: B9 00 00                              mov cx, 0
+[ 126]    03B0: BA 10 00                              mov dx, 16
+[ 127]    03B3: CD 21                                 int 21h
+[ 128]        :                                       
+[ 129]        :                                       ; write to file:
+[ 130]    03B5: B4 40                                 mov ah, 40h
+[ 131]    03B7: 8B 1E 4A 01                           mov bx, handle
+[ 132]    03BB: BA 4C 01                              mov dx, offset text
+[ 133]    03BE: B9 C7 01                              mov cx, text_size
+[ 134]    03C1: BA 7B 01                              mov dx, offset text2
+[ 135]    03C4: B9 98 01                              mov cx, text2_size
+[ 136]    03C7: BA AA 01                              mov dx, offset text3
+[ 137]    03CA: B9 69 01                              mov cx, text3_size
+[ 138]    03CD: BA D8 01                              mov dx, offset text4
+[ 139]    03D0: B9 3B 01                              mov cx, text4_size
+[ 140]    03D3: BA 0A 02                              mov dx, offset text5
+[ 141]    03D6: B9 09 01                              mov cx, text5_size
+[ 142]    03D9: BA 3C 02                              mov dx, offset text6
+[ 143]    03DC: B9 D7 00                              mov cx, text6_size
+[ 144]    03DF: BA 70 02                              mov dx, offset text7
+[ 145]    03E2: B9 A3 00                              mov cx, text7_size
+[ 146]    03E5: CD 21                                 int 21h
+[ 147]        :                                       
+[ 148]        :                                       ; seek:
+[ 149]    03E7: B4 42                                 mov ah, 42h
+[ 150]    03E9: 8B 1E 4A 01                           mov bx, handle
+[ 151]    03ED: B0 00                                 mov al, 0
+[ 152]    03EF: B9 00 00                              mov cx, 0
+[ 153]    03F2: BA 02 00                              mov dx, 2
+[ 154]    03F5: CD 21                                 int 21h
+[ 155]        :                                       
+[ 156]        :                                       ; write to file:
+[ 157]    03F7: B4 40                                 mov ah, 40h
+[ 158]    03F9: 8B 1E 4A 01                           mov bx, handle
+[ 159]    03FD: BA 13 03                              mov dx, offset text12
+[ 160]    0400: B9 03 00                              mov cx, text12_size
+[ 161]    0403: CD 21                                 int 21h
+[ 162]        :                                       
+[ 163]        :                                       ; close c:\emu8086\MyBuild\t1.txt
+[ 164]    0405: B4 3E                                 mov ah, 3eh
+[ 165]    0407: 8B 1E 4A 01                           mov bx, handle
+[ 166]    040B: CD 21                                 int 21h
+[ 167]    040D:                                       err2:
+[ 168]    040D: 90                                    nop
+[ 169]        :                                       
+[ 170]        :                                       ; delete file  c:\emu8086\MyBuild\t1.txt
+[ 171]    040E: B4 41                                 mov ah, 41h
+[ 172]    0410: BA 43 01                              mov dx, offset file3
+[ 173]    0413: CD 21                                 int 21h
+[ 174]        :                                       
+[ 175]        :                                       ; delete directory: c:\emu8086\MyBuild\newname
+[ 176]    0415: B4 3A                                 mov ah, 3ah
+[ 177]    0417: BA 12 01                              mov dx, offset dir3
+[ 178]    041A: CD 21                                 int 21h
+[ 179]        :                                       
+[ 180]        :                                       
+[ 181]    041C: C3                                    ret
+[ 182]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================
